@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZENTRA Forensic Console V3</title>
+    <title>ZENTRA Forensic Console V4</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome (for icons) -->
@@ -160,7 +160,7 @@
                 
                 <!-- Right: Ingest Button & Progress -->
                 <div class="flex items-center space-x-4">
-                    <button class="px-5 py-2 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition duration-150 shadow-lg text-lg flex items-center">
+                    <button class="px-5 py-2 bg-red-400 text-white font-bold rounded-xl hover:bg-red-700 transition duration-150 shadow-lg text-lg flex items-center">
                         <i class="fas fa-upload mr-2"></i> INGEST UFDR
                     </button>
                     <div class="w-64">
@@ -211,11 +211,11 @@
                 </div>
             </div>
 
-            <!-- Main Content Area: Graph (70%) and Bottom Widgets (30%) -->
-            <div class="flex flex-col space-y-4 flex-grow overflow-hidden">
+            <!-- Main Content Area: Graph (Wide) and Right Widgets (Stacked) -->
+            <div class="grid grid-cols-4 gap-4 flex-grow overflow-hidden">
 
-                <!-- 3.1 SMART EVIDENCE GRAPH (Takes 68% of the remaining height) -->
-                <div class="h-[68%] bg-white p-5 rounded-xl card-shadow flex flex-col overflow-hidden border-2 border-cyan-300">
+                <!-- 3.1 SMART EVIDENCE GRAPH (WIDE - Takes 3 of 4 columns, Full Height) -->
+                <div class="col-span-3 h-full bg-white p-5 rounded-xl card-shadow flex flex-col overflow-hidden border-2 border-cyan-300">
                     <h2 class="text-xl font-bold text-gray-800 mb-1 flex items-center">
                         <i class="fas fa-sitemap mr-2 text-cyan-600"></i> Smart Evidence Graph
                     </h2>
@@ -225,72 +225,15 @@
                     </div>
                 </div>
 
-                <!-- Bottom Row: Media Forensics & Linkage Box (Takes 30% of the remaining height) -->
-                <div class="h-[30%] grid grid-cols-1 lg:grid-cols-2 gap-4 flex-shrink-0">
+                <!-- Right Column Stack (1/4 width, Full Height) -->
+                <div class="col-span-1 flex flex-col space-y-4 h-full">
                     
-                    <!-- 3.2 MEDIA FORENSICS (Left Column) -->
-                    <div class="bg-white p-4 rounded-xl card-shadow flex flex-col flex-shrink-0 overflow-hidden">
-                        <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center">
-                            <i class="fas fa-camera-retro mr-2 text-purple-600"></i> Media Forensics (5/85 Flagged)
-                        </h2>
-                        <!-- Max height reduced from max-h-48 to max-h-40 -->
-                        <div class="flex flex-wrap gap-3 slim-scroll overflow-y-auto max-h-40">
-                            <!-- Thumbnails with Tags (Increased content and rich tags) -->
-                            
-                            <!-- Item 1: OCR + Face (Confirmed) -->
-                            <div class="w-20 h-24 bg-gray-200 rounded-lg flex flex-col justify-between p-1 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer">
-                                <span class="text-xs text-gray-600 text-center block pt-1">img_001.jpg</span>
-                                <div class="absolute top-1 right-1 flex flex-col space-y-1">
-                                    <i class="fas fa-font text-xs p-1 rounded-full bg-yellow-400 text-white" title="Text Extracted (OCR)"></i>
-                                </div>
-                                <span class="text-xs text-green-500 block text-center pb-1 font-semibold">Confirmed</span>
-                            </div>
-
-                            <!-- Item 2: Weapon Detected (Red Flag) -->
-                            <div class="w-20 h-24 bg-red-100 rounded-lg flex flex-col justify-between p-1 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer border-2 border-red-500">
-                                <span class="text-xs text-gray-600 text-center block pt-1 font-bold">vid_01.mp4</span>
-                                <div class="absolute top-1 right-1 flex flex-col space-y-1">
-                                    <i class="fas fa-exclamation-triangle text-xs p-1 rounded-full bg-red-600 text-white" title="Weapon Detected"></i>
-                                </div>
-                                <span class="text-xs text-red-500 block text-center pb-1 font-semibold">Red Flag</span>
-                            </div>
-
-                            <!-- Item 3: OCR only (AI Detected) -->
-                            <div class="w-20 h-24 bg-gray-200 rounded-lg flex flex-col justify-between p-1 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer">
-                                <span class="text-xs text-gray-600 text-center block pt-1">doc_scan.pdf</span>
-                                <div class="absolute top-1 right-1 flex flex-col space-y-1">
-                                    <i class="fas fa-font text-xs p-1 rounded-full bg-yellow-400 text-white" title="Text Extracted (OCR)"></i>
-                                </div>
-                                <span class="text-xs text-yellow-700 block text-center pb-1 font-semibold">AI Detected</span>
-                            </div>
-
-                            <!-- Item 4: Pending -->
-                            <div class="w-20 h-24 bg-gray-100 rounded-lg flex flex-col justify-between p-1 shadow-md relative group border-2 border-dashed border-gray-400">
-                                <span class="text-xs text-gray-400 text-center block pt-1">vid_clip.mov</span>
-                                <div class="absolute top-1 right-1 flex flex-col space-y-1">
-                                    <i class="fas fa-clock text-xs p-1 rounded-full bg-gray-500 text-white opacity-70" title="Pending Analysis"></i>
-                                </div>
-                                <span class="text-xs text-gray-500 block text-center pb-1">Pending</span>
-                            </div>
-
-                            <!-- Item 5: Deleted File Recovery -->
-                            <div class="w-20 h-24 bg-blue-100 rounded-lg flex flex-col justify-between p-1 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer border-2 border-blue-500">
-                                <span class="text-xs text-gray-600 text-center block pt-1">del_chat.db</span>
-                                <div class="absolute top-1 right-1 flex flex-col space-y-1">
-                                    <i class="fas fa-history text-xs p-1 rounded-full bg-blue-600 text-white" title="Recovered Artifact"></i>
-                                </div>
-                                <span class="text-xs text-blue-700 block text-center pb-1 font-semibold">Recovered</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 3.3 CROSS-CASE LINKAGE (Right Column) -->
-                    <div class="bg-white p-4 rounded-xl card-shadow flex flex-col flex-shrink-0 overflow-hidden border-2 border-purple-300">
-                        <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center">
+                    <!-- 3.3 CROSS-CASE LINKAGE (TOP RIGHT, Takes 50% of column height) -->
+                    <div class="h-1/2 bg-white p-4 rounded-xl card-shadow flex flex-col flex-shrink-0 overflow-hidden border-2 border-purple-300">
+                        <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center flex-shrink-0">
                             <i class="fas fa-network-wired mr-2 text-purple-600"></i> Cross-Case Linkage
                         </h2>
-                        <!-- Max height reduced from max-h-48 to max-h-40 -->
-                        <ul class="space-y-2 slim-scroll overflow-y-auto max-h-40">
+                        <ul class="space-y-2 slim-scroll overflow-y-auto flex-grow">
                             <li class="bg-gray-50 p-2 rounded-lg border-l-4 border-red-500 flex justify-between items-center">
                                 <div>
                                     <p class="font-semibold text-sm text-gray-800">Suspect A Linked</p>
@@ -314,6 +257,60 @@
                             </li>
                         </ul>
                     </div>
+
+                    <!-- 3.2 MEDIA FORENSICS (BOTTOM RIGHT, Takes 50% of column height) -->
+                    <div class="h-1/2 bg-white p-4 rounded-xl card-shadow flex flex-col flex-shrink-0 overflow-hidden">
+                        <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center flex-shrink-0">
+                            <i class="fas fa-camera-retro mr-2 text-purple-600"></i> Media Forensics (5/85 Flagged)
+                        </h2>
+                        <div class="flex flex-wrap gap-2 slim-scroll overflow-y-auto flex-grow">
+                            
+                            <!-- Item 1: OCR + Face (Confirmed) -->
+                            <div class="w-16 h-20 bg-gray-200 rounded-lg flex flex-col justify-between p-1 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer">
+                                <span class="text-xs text-gray-600 text-center block pt-1">img_001.jpg</span>
+                                <div class="absolute top-0.5 right-0.5 flex flex-col space-y-0.5">
+                                    <i class="fas fa-font text-xs p-1 rounded-full bg-yellow-400 text-white" title="Text Extracted (OCR)"></i>
+                                </div>
+                                <span class="text-xs text-green-500 block text-center pb-0.5 font-semibold">Confirmed</span>
+                            </div>
+
+                            <!-- Item 2: Weapon Detected (Red Flag) -->
+                            <div class="w-16 h-20 bg-red-100 rounded-lg flex flex-col justify-between p-1 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer border-2 border-red-500">
+                                <span class="text-xs text-gray-600 text-center block pt-1 font-bold">vid_01.mp4</span>
+                                <div class="absolute top-0.5 right-0.5 flex flex-col space-y-0.5">
+                                    <i class="fas fa-exclamation-triangle text-xs p-1 rounded-full bg-red-600 text-white" title="Weapon Detected"></i>
+                                </div>
+                                <span class="text-xs text-red-500 block text-center pb-0.5 font-semibold">Red Flag</span>
+                            </div>
+
+                            <!-- Item 3: OCR only (AI Detected) -->
+                            <div class="w-16 h-20 bg-gray-200 rounded-lg flex flex-col justify-between p-1 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer">
+                                <span class="text-xs text-gray-600 text-center block pt-1">doc_scan.pdf</span>
+                                <div class="absolute top-0.5 right-0.5 flex flex-col space-y-0.5">
+                                    <i class="fas fa-font text-xs p-1 rounded-full bg-yellow-400 text-white" title="Text Extracted (OCR)"></i>
+                                </div>
+                                <span class="text-xs text-yellow-700 block text-center pb-0.5 font-semibold">AI Detected</span>
+                            </div>
+
+                            <!-- Item 4: Pending -->
+                            <div class="w-16 h-20 bg-gray-100 rounded-lg flex flex-col justify-between p-1 shadow-md relative group border-2 border-dashed border-gray-400">
+                                <span class="text-xs text-gray-400 text-center block pt-1">vid_clip.mov</span>
+                                <div class="absolute top-0.5 right-0.5 flex flex-col space-y-0.5">
+                                    <i class="fas fa-clock text-xs p-1 rounded-full bg-gray-500 text-white opacity-70" title="Pending Analysis"></i>
+                                </div>
+                                <span class="text-xs text-gray-500 block text-center pb-0.5">Pending</span>
+                            </div>
+
+                            <!-- Item 5: Deleted File Recovery -->
+                            <div class="w-16 h-20 bg-blue-100 rounded-lg flex flex-col justify-between p-1 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer border-2 border-blue-500">
+                                <span class="text-xs text-gray-600 text-center block pt-1">del_chat.db</span>
+                                <div class="absolute top-0.5 right-0.5 flex flex-col space-y-0.5">
+                                    <i class="fas fa-history text-xs p-1 rounded-full bg-blue-600 text-white" title="Recovered Artifact"></i>
+                                </div>
+                                <span class="text-xs text-blue-700 block text-center pb-0.5 font-semibold">Recovered</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -323,23 +320,20 @@
         <!-- 4. RIGHT SIDEBAR (w-72) -->
         <aside class="w-72 bg-white border-l border-gray-100 p-4 flex flex-col space-y-3 flex-shrink-0 shadow-2xl overflow-hidden">
             
-            <!-- ZENTRA Header (Removed "AI") -->
+            <!-- ZENTRA Header -->
             <div class="border-b pb-2 flex-shrink-0 flex justify-between items-center">
                 <h3 class="text-xl font-bold text-gray-800 flex-shrink-0 flex items-center">
                     <i class="fas fa-robot mr-2 text-cyan-600"></i> ZENTRA
                 </h3>
                 <!-- Buttons (Clearer) -->
                 <div class="flex space-x-2">
-                    <button class="text-sm px-3 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-150 shadow-md flex items-center" title="Generate Report">
+                    <button class="text-sm px-3 py-2 bg-purple-400 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-150 shadow-md flex items-center" title="Generate Report">
                         <i class="fas fa-file-pdf mr-1"></i> Report
-                    </button>
-                    <button class="text-sm px-3 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition duration-150 shadow-md flex items-center" title="Summarize Case">
-                        <i class="fas fa-lightbulb mr-1"></i> Summary
                     </button>
                 </div>
             </div>
 
-            <!-- Chat Content Box (Height optimized for no-scroll) -->
+            <!-- Chat Content Box (Optimized for no-scroll in this view) -->
             <div id="ai-chat-box" class="flex-grow space-y-3 slim-scroll overflow-y-auto max-h-[50vh] pr-1">
                 
                 <!-- AI Welcome Message -->
@@ -396,7 +390,7 @@
                 </button>
             </div>
             
-            <!-- Case Summary (Removed "AI", Fixed Height) -->
+            <!-- Case Synopsis (Removed "AI", Fixed Height) -->
             <div class="bg-gray-50 p-3 rounded-xl border border-purple-300 flex flex-col flex-shrink-0">
                 <h4 class="text-sm font-bold text-gray-800 mb-1 flex items-center border-b pb-1 justify-between">
                     <div class="flex items-center">
