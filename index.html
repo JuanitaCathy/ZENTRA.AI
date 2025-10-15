@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZENTRA.AI Forensic Console</title>
+    <title>ZENTRA.AI Forensic Console V2</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome (for icons) -->
@@ -146,11 +146,33 @@
         <!-- 3. CENTER MAIN CONTENT AREA (Full Width Focus) -->
         <section id="center-main" class="flex flex-col flex-grow p-4 space-y-4 overflow-hidden">
             
-            <!-- Case Number Header -->
-            <div class="flex items-center justify-start flex-shrink-0">
-                <h1 class="text-xl font-extrabold text-gray-800 bg-white p-2 rounded-lg card-shadow font-mono border-l-4 border-red-600">
-                    CASE NUMBER: <span class="text-red-600">24-03-A27</span>
-                </h1>
+            <!-- Case Header & Action Panel (New) -->
+            <div class="flex items-center justify-between flex-shrink-0">
+                <!-- Left: Case Number & Name -->
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-xl font-extrabold text-gray-800 bg-white p-2 rounded-lg card-shadow font-mono border-l-4 border-red-600">
+                        CASE NUMBER: <span class="text-red-600">24-03-A27</span>
+                    </h1>
+                    <h2 class="text-xl font-extrabold text-gray-600 bg-white p-2 rounded-lg card-shadow border-l-4 border-cyan-600">
+                        CASE NAME: <span class="text-cyan-600">Project Chimera</span>
+                    </h2>
+                </div>
+                
+                <!-- Right: Ingest Button & Progress -->
+                <div class="flex items-center space-x-4">
+                    <button class="px-5 py-2 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition duration-150 shadow-lg text-lg flex items-center">
+                        <i class="fas fa-upload mr-2"></i> INGEST UFDR
+                    </button>
+                    <div class="w-64">
+                        <p class="text-xs font-semibold text-gray-600 mb-1 flex justify-between">
+                            Data Processing Status
+                            <span class="text-red-600">75% Loaded</span>
+                        </p>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-red-600 h-2.5 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Analytics Cards Strip -->
@@ -189,7 +211,7 @@
                 </div>
             </div>
 
-            <!-- Main Content: Graph, Linkage, and Forensics (All Full Width Stack) -->
+            <!-- Main Content: Graph and Bottom Widgets -->
             <div class="flex flex-col space-y-4 flex-grow overflow-hidden">
 
                 <!-- 3.1 SMART EVIDENCE GRAPH (Majority of Center) -->
@@ -203,89 +225,94 @@
                     </div>
                 </div>
 
-                <!-- 3.2 MINI LIVE LINKAGE WIDGET (Thin Full-Width Strip Below Graph) -->
-                <div class="bg-gray-800 text-white p-3 rounded-xl card-shadow flex flex-col flex-shrink-0 border-l-4 border-red-500 font-mono">
-                    <h2 class="text-sm font-bold mb-2 flex items-center text-red-400">
-                        <i class="fas fa-bolt mr-2"></i> MINI LIVE LINKAGE TRACKER
-                    </h2>
-                    <div class="flex justify-between items-center text-xs text-gray-300">
-                        <div class="flex flex-col items-center">
-                            <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg">A</div>
-                            <span class="mt-1">SUSPECT 1</span>
-                        </div>
-                        <div class="h-px w-20 bg-red-500 flex items-center justify-center relative">
-                            <i class="fas fa-arrow-right text-red-500 absolute -right-2"></i>
-                            <span class="absolute -top-4 text-xs font-semibold text-red-400">3 LINKS</span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg">C</div>
-                            <span class="mt-1">CRYPTO WALLET</span>
-                        </div>
-                        <div class="h-px w-20 bg-gray-500 flex items-center justify-center relative">
-                            <i class="fas fa-arrow-right text-gray-500 absolute -right-2"></i>
-                            <span class="absolute -top-4 text-xs font-semibold text-gray-400">1 LINK</span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg">S</div>
-                            <span class="mt-1">FOREIGN SOURCE</span>
+                <!-- Bottom Row: Media Forensics & Linkage Box (Adjacent) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-shrink-0">
+                    
+                    <!-- 3.2 MEDIA FORENSICS (Left Column) -->
+                    <div class="bg-white p-5 rounded-xl card-shadow flex flex-col flex-shrink-0 overflow-hidden">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-camera-retro mr-2 text-purple-600"></i> Media Forensics (5/85 Flagged)
+                        </h2>
+                        <div class="flex flex-wrap gap-3 slim-scroll overflow-y-auto max-h-48">
+                            <!-- Thumbnails with Tags (Increased content and rich tags) -->
+                            
+                            <!-- Item 1: OCR + Face (Confirmed) -->
+                            <div class="w-24 h-28 bg-gray-200 rounded-lg flex flex-col justify-between p-1.5 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer">
+                                <span class="text-xs text-gray-600 text-center block pt-2">img_001.jpg</span>
+                                <div class="absolute top-1 right-1 flex flex-col space-y-1">
+                                    <i class="fas fa-font text-xs p-1 rounded-full bg-yellow-400 text-white" title="Text Extracted (OCR)"></i>
+                                    <i class="fas fa-user-tag text-xs p-1 rounded-full bg-blue-500 text-white" title="Face Detected"></i>
+                                </div>
+                                <span class="text-xs text-green-500 block text-center pb-1 font-semibold">Confirmed</span>
+                            </div>
+
+                            <!-- Item 2: Weapon Detected (Red Flag) -->
+                            <div class="w-24 h-28 bg-red-100 rounded-lg flex flex-col justify-between p-1.5 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer border-2 border-red-500">
+                                <span class="text-xs text-gray-600 text-center block pt-2 font-bold">vid_01.mp4</span>
+                                <div class="absolute top-1 right-1 flex flex-col space-y-1">
+                                    <i class="fas fa-exclamation-triangle text-xs p-1 rounded-full bg-red-600 text-white" title="Weapon Detected"></i>
+                                    <i class="fas fa-robot text-xs p-1 rounded-full bg-gray-600 text-white" title="AI Flagged"></i>
+                                </div>
+                                <span class="text-xs text-red-500 block text-center pb-1 font-semibold">Red Flag</span>
+                            </div>
+
+                            <!-- Item 3: OCR only (AI Detected) -->
+                            <div class="w-24 h-28 bg-gray-200 rounded-lg flex flex-col justify-between p-1.5 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer">
+                                <span class="text-xs text-gray-600 text-center block pt-2">doc_scan.pdf</span>
+                                <div class="absolute top-1 right-1 flex flex-col space-y-1">
+                                    <i class="fas fa-font text-xs p-1 rounded-full bg-yellow-400 text-white" title="Text Extracted (OCR)"></i>
+                                </div>
+                                <span class="text-xs text-yellow-700 block text-center pb-1 font-semibold">AI Detected</span>
+                            </div>
+
+                            <!-- Item 4: Pending -->
+                            <div class="w-24 h-28 bg-gray-100 rounded-lg flex flex-col justify-between p-1.5 shadow-md relative group border-2 border-dashed border-gray-400">
+                                <span class="text-xs text-gray-400 text-center block pt-2">vid_clip.mov</span>
+                                <div class="absolute top-1 right-1 flex flex-col space-y-1">
+                                    <i class="fas fa-clock text-xs p-1 rounded-full bg-gray-500 text-white opacity-70" title="Pending Analysis"></i>
+                                </div>
+                                <span class="text-xs text-gray-500 block text-center pb-1">Pending</span>
+                            </div>
+
+                            <!-- Item 5: Deleted File Recovery -->
+                            <div class="w-24 h-28 bg-blue-100 rounded-lg flex flex-col justify-between p-1.5 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer border-2 border-blue-500">
+                                <span class="text-xs text-gray-600 text-center block pt-2">del_chat.db</span>
+                                <div class="absolute top-1 right-1 flex flex-col space-y-1">
+                                    <i class="fas fa-history text-xs p-1 rounded-full bg-blue-600 text-white" title="Recovered Artifact"></i>
+                                </div>
+                                <span class="text-xs text-blue-700 block text-center pb-1 font-semibold">Recovered</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 3.3 MEDIA FORENSICS (Now Full Width) -->
-                <div class="bg-white p-5 rounded-xl card-shadow flex flex-col flex-shrink-0 overflow-hidden">
-                    <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                        <i class="fas fa-camera-retro mr-2 text-purple-600"></i> Media Forensics (5/85 Flagged)
-                    </h2>
-                    <div class="flex flex-wrap gap-3 slim-scroll overflow-y-auto max-h-48">
-                        <!-- Thumbnails with Tags (Increased content and rich tags) -->
-                        
-                        <!-- Item 1: OCR + Face (Confirmed) -->
-                        <div class="w-24 h-28 bg-gray-200 rounded-lg flex flex-col justify-between p-1.5 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer">
-                            <span class="text-xs text-gray-600 text-center block pt-2">img_001.jpg</span>
-                            <div class="absolute top-1 right-1 flex flex-col space-y-1">
-                                <i class="fas fa-font text-xs p-1 rounded-full bg-yellow-400 text-white" title="Text Extracted (OCR)"></i>
-                                <i class="fas fa-user-tag text-xs p-1 rounded-full bg-blue-500 text-white" title="Face Detected"></i>
-                            </div>
-                            <span class="text-xs text-green-500 block text-center pb-1 font-semibold">Confirmed</span>
-                        </div>
-
-                        <!-- Item 2: Weapon Detected (Red Flag) -->
-                        <div class="w-24 h-28 bg-red-100 rounded-lg flex flex-col justify-between p-1.5 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer border-2 border-red-500">
-                            <span class="text-xs text-gray-600 text-center block pt-2 font-bold">vid_01.mp4</span>
-                            <div class="absolute top-1 right-1 flex flex-col space-y-1">
-                                <i class="fas fa-exclamation-triangle text-xs p-1 rounded-full bg-red-600 text-white" title="Weapon Detected"></i>
-                                <i class="fas fa-robot text-xs p-1 rounded-full bg-gray-600 text-white" title="AI Flagged"></i>
-                            </div>
-                            <span class="text-xs text-red-500 block text-center pb-1 font-semibold">Red Flag</span>
-                        </div>
-
-                        <!-- Item 3: OCR only (AI Detected) -->
-                        <div class="w-24 h-28 bg-gray-200 rounded-lg flex flex-col justify-between p-1.5 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer">
-                            <span class="text-xs text-gray-600 text-center block pt-2">doc_scan.pdf</span>
-                            <div class="absolute top-1 right-1 flex flex-col space-y-1">
-                                <i class="fas fa-font text-xs p-1 rounded-full bg-yellow-400 text-white" title="Text Extracted (OCR)"></i>
-                            </div>
-                            <span class="text-xs text-yellow-700 block text-center pb-1 font-semibold">AI Detected</span>
-                        </div>
-
-                        <!-- Item 4: Pending -->
-                        <div class="w-24 h-28 bg-gray-100 rounded-lg flex flex-col justify-between p-1.5 shadow-md relative group border-2 border-dashed border-gray-400">
-                            <span class="text-xs text-gray-400 text-center block pt-2">vid_clip.mov</span>
-                            <div class="absolute top-1 right-1 flex flex-col space-y-1">
-                                <i class="fas fa-clock text-xs p-1 rounded-full bg-gray-500 text-white opacity-70" title="Pending Analysis"></i>
-                            </div>
-                            <span class="text-xs text-gray-500 block text-center pb-1">Pending</span>
-                        </div>
-
-                        <!-- Item 5: Deleted File Recovery -->
-                        <div class="w-24 h-28 bg-blue-100 rounded-lg flex flex-col justify-between p-1.5 shadow-md relative group hover:shadow-xl transition-shadow cursor-pointer border-2 border-blue-500">
-                            <span class="text-xs text-gray-600 text-center block pt-2">del_chat.db</span>
-                            <div class="absolute top-1 right-1 flex flex-col space-y-1">
-                                <i class="fas fa-history text-xs p-1 rounded-full bg-blue-600 text-white" title="Recovered Artifact"></i>
-                            </div>
-                            <span class="text-xs text-blue-700 block text-center pb-1 font-semibold">Recovered</span>
-                        </div>
+                    <!-- 3.3 CROSS-CASE LINKAGE (Right Column) -->
+                    <div class="bg-white p-5 rounded-xl card-shadow flex flex-col flex-shrink-0 overflow-hidden border-2 border-purple-300">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-network-wired mr-2 text-purple-600"></i> Cross-Case Linkage
+                        </h2>
+                        <ul class="space-y-3 slim-scroll overflow-y-auto max-h-48">
+                            <li class="bg-gray-50 p-3 rounded-lg border-l-4 border-red-500 flex justify-between items-center">
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-800">Suspect A Linked</p>
+                                    <p class="text-xs text-gray-500">Shared Telegram ID in **Case 23-01-B12**</p>
+                                </div>
+                                <span class="tag-style bg-red-100 text-red-700">HIGH</span>
+                            </li>
+                            <li class="bg-gray-50 p-3 rounded-lg border-l-4 border-cyan-500 flex justify-between items-center">
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-800">Device Match</p>
+                                    <p class="text-xs text-gray-500">MAC Address found in **Case 22-05-D08**</p>
+                                </div>
+                                <span class="tag-style bg-cyan-100 text-cyan-700">MEDIUM</span>
+                            </li>
+                            <li class="bg-gray-50 p-3 rounded-lg border-l-4 border-yellow-500 flex justify-between items-center">
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-800">Financial Link</p>
+                                    <p class="text-xs text-gray-500">Small transaction to target in **Case 24-01-C01**</p>
+                                </div>
+                                <span class="tag-style bg-yellow-100 text-yellow-700">LOW</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -293,21 +320,21 @@
             
         </section>
         
-        <!-- 4. RIGHT SIDEBAR (Reduced Width w-72 & New Title/Button Layout) -->
+        <!-- 4. RIGHT SIDEBAR (w-72) -->
         <aside class="w-72 bg-white border-l border-gray-100 p-4 flex flex-col space-y-4 flex-shrink-0 shadow-2xl overflow-hidden">
             
-            <!-- Chat Header with Moved & Shrunk Buttons -->
+            <!-- AI Header (Removed "Chat") -->
             <div class="border-b pb-2 flex-shrink-0 flex justify-between items-center">
                 <h3 class="text-xl font-bold text-gray-800 flex-shrink-0 flex items-center">
-                    <i class="fas fa-robot mr-2 text-cyan-600"></i> ZENTRA Chat
+                    <i class="fas fa-robot mr-2 text-cyan-600"></i> ZENTRA AI
                 </h3>
-                <!-- Moved & Shrunk Buttons -->
+                <!-- Buttons (Made clearer and slightly larger) -->
                 <div class="flex space-x-2">
-                    <button class="text-sm px-3 py-1 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-150 shadow-md" title="Generate Report">
-                        <i class="fas fa-file-pdf"></i> Report
+                    <button class="text-sm px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-150 shadow-md flex items-center" title="Generate Report">
+                        <i class="fas fa-file-pdf mr-1"></i> Report
                     </button>
-                    <button class="text-sm px-3 py-1 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition duration-150 shadow-md" title="Summarize Case">
-                        <i class="fas fa-lightbulb"></i> Summary
+                    <button class="text-sm px-4 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition duration-150 shadow-md flex items-center" title="Summarize Case">
+                        <i class="fas fa-lightbulb mr-1"></i> Summary
                     </button>
                 </div>
             </div>
@@ -369,23 +396,24 @@
                 </button>
             </div>
             
-            <!-- NEW: AI Driven Case Summary (Moved from Center) -->
+            <!-- AI Driven Case Summary (Updated) -->
             <div class="bg-gray-50 p-4 rounded-xl border border-purple-300 flex flex-col flex-shrink-0">
-                <h4 class="text-sm font-bold text-gray-800 mb-2 flex items-center border-b pb-1">
-                    <i class="fas fa-brain mr-2 text-purple-600"></i> AI Case Synopsis
+                <h4 class="text-sm font-bold text-gray-800 mb-2 flex items-center border-b pb-1 justify-between">
+                    <div class="flex items-center">
+                         <i class="fas fa-brain mr-2 text-purple-600"></i> AI Case Synopsis
+                    </div>
+                    <!-- Confirmed Tag Added Here (Step 4) -->
+                    <span class="tag-style bg-green-100 text-green-700 border border-green-300 whitespace-nowrap">
+                        <i class="fas fa-check-double mr-1"></i> Confirmed
+                    </span>
                 </h4>
                 <p class="text-gray-700 text-xs mb-2">
                     ZENTRA has identified a strong pattern linking **Person A** (Suspect) to foreign financial activity and suspicious files.
                 </p>
                 <div class="flex space-x-2 overflow-x-auto pb-1">
+                    <!-- Only 3 High-Risk Transactions remains (Step 4) -->
                     <span class="tag-style bg-red-100 text-red-700 border border-red-300 whitespace-nowrap">
                         <i class="fas fa-fire mr-1"></i> 3 High-Risk Transactions
-                    </span>
-                    <span class="tag-style bg-yellow-100 text-yellow-700 border border-yellow-300 whitespace-nowrap">
-                        <i class="fas fa-robot mr-1"></i> AI Detected
-                    </span>
-                    <span class="tag-style bg-green-100 text-green-700 border border-green-300 whitespace-nowrap">
-                        <i class="fas fa-check-double mr-1"></i> Confirmed
                     </span>
                 </div>
             </div>
@@ -407,72 +435,95 @@
     <script>
         // --- VISUALIZATION SETUP (vis-network) ---
         
-        // Define Custom Node and Edge Data
+        // Define Custom Node and Edge Data (Increased complexity and color variance)
         const nodes = new vis.DataSet([
-            // Suspects (Red/Purple)
-            { id: 1, label: 'Person A (Suspect)', group: 'suspect', title: 'High Risk Suspect', color: { border: '#9c27b0', background: '#f3e5f5' } },
-            { id: 2, label: 'Person B (Associate)', group: 'suspect', title: 'Known Contact', color: { border: '#e57373', background: '#ffebee' } },
+            // Primary Suspects (Red/Purple)
+            { id: 1, label: 'Person A\n(Main Suspect)', group: 's_main', title: 'High-Risk Suspect, Foreign Links', color: { background: '#f5d0fe', border: '#a855f7' } },
+            { id: 2, label: 'Person B\n(Co-Conspirator)', group: 's_co', title: 'Associate, Linked to Data Leak', color: { background: '#fee2e2', border: '#ef4444' } },
             
-            // Artifacts (Blue/Cyan)
-            { id: 3, label: 'WhatsApp Chat', group: 'chat', icon: { face: '\uf086', color: '#00bcd4' }, title: 'WhatsApp Chat (Crypto Mentions)' },
-            { id: 4, label: 'Email Log', group: 'chat', icon: { face: '\uf0e0', color: '#00bcd4' }, title: 'Email Log (High Frequency)' },
-            { id: 5, label: 'Image_002.png', group: 'media', icon: { face: '\uf03e', color: '#8d6e63' }, title: 'Media: Weapon Detected' },
-            { id: 6, label: 'Document_01', group: 'doc', icon: { face: '\uf15c', color: '#546e7a' }, title: 'Document: Suspicious Keywords' },
+            // Financial Nodes (Yellow/Orange)
+            { id: 3, label: 'Crypto Wallet\n(0x...)', group: 'finance', icon: { face: '\uf830', color: '#f59e0b' }, title: 'Flagged Crypto Address, Transaction 4' },
+            { id: 4, label: 'Offshore Bank\n(Swiss)', group: 'finance', icon: { face: '\uf155', color: '#f59e0b' }, title: 'Account linked to Person A' },
             
-            // Red Flag Nodes (Special Icons/Colors)
-            { id: 7, label: '+91 988XX1234', group: 'foreign', icon: { face: '\uf579', color: '#ef4444' }, title: '🔴 Suspicious Foreign Number' },
-            { id: 8, label: '0x12ab...E9F', group: 'crypto', icon: { face: '\uf830', color: '#ef4444' }, title: '🔴 Flagged Crypto Address' },
+            // Communication Artifacts (Cyan/Blue)
+            { id: 5, label: 'Telegram Chat\n(Group 1)', group: 'comms', icon: { face: '\uf086', color: '#06b6d4' }, title: 'Encrypted Group Chat, Key Phrase Match' },
+            { id: 6, label: 'Email Server\n(Log 14)', group: 'comms', icon: { face: '\uf0e0', color: '#06b6d4' }, title: 'Bulk Emails Sent to 3rd Party' },
+            { id: 7, label: 'Phone_001\n(Dump)', group: 'device', icon: { face: '\uf3cd', color: '#10b981' }, title: 'Device: Data Dump from Person A' },
+            
+            // Documents/Evidence (Green/Teal)
+            { id: 8, label: 'Blueprint\n(PDF)', group: 'doc', icon: { face: '\uf15c', color: '#16a34a' }, title: 'Sensitive Document found in Cloud' },
+            { id: 9, label: 'Image_002\n(Red Flag)', group: 'media', icon: { face: '\uf03e', color: '#fb923c' }, title: 'Media: Geotagged Image (Conflict Area)' },
+            { id: 10, label: 'Case 23-01-B12', group: 'case', icon: { face: '\uf19c', color: '#7e22ce' }, title: 'Historical Case Link: Shared Contacts' },
+            
+            // Additional Nodes to bulk it up
+            { id: 11, label: 'Known\nVendor', group: 'other', icon: { face: '\uf07a', color: '#64748b' } },
+            { id: 12, label: 'VPN IP\n(192.168..)', group: 'other', icon: { face: '\uf0ac', color: '#64748b' } },
+            { id: 13, label: 'Device_B\n(Tablet)', group: 'device', icon: { face: '\uf3fa', color: '#10b981' } },
+            { id: 14, label: 'File_C\n(Key Log)', group: 'doc', icon: { face: '\uf023', color: '#16a34a' } },
         ]);
 
         const edges = new vis.DataSet([
-            { from: 1, to: 3, label: 'Authored (💬)' },
-            { from: 1, to: 4, label: 'Sent (✉️)' },
-            { from: 3, to: 7, label: 'Contacted (📱)' },
-            { from: 3, to: 8, label: 'Mentioned (🪙)' },
-            { from: 2, to: 4, label: 'Recipient' },
-            { from: 1, to: 5, label: 'Possesses (📸)' },
-            { from: 1, to: 6, label: 'Created' },
+            { from: 1, to: 7, label: 'Owner', width: 3 },
+            { from: 7, to: 5, label: 'Installed App' },
+            { from: 1, to: 5, label: 'Participates', color: { color: '#ef4444' } },
+            { from: 2, to: 5, label: 'Participates' },
+            { from: 2, to: 6, label: 'Recipient' },
+            { from: 1, to: 4, label: 'Controls', length: 300 },
+            { from: 4, to: 3, label: 'Funded (🚨)', color: { color: '#f59e0b' } },
+            { from: 7, to: 9, label: 'Stored (Geo)' },
+            { from: 1, to: 10, label: 'Shared Contact', dashes: true },
+            { from: 2, to: 10, label: 'Shared ID', dashes: true },
+            { from: 1, to: 8, label: 'Accessed' },
+            { from: 8, to: 11, label: 'Related To' },
+            { from: 13, to: 1, label: 'Used By' },
+            { from: 13, to: 14, label: 'Stored On' },
+            { from: 12, to: 6, label: 'Origin IP' },
         ]);
 
-        const container = document.getElementById('evidence-graph');
-        const data = { nodes: nodes, edges: edges };
+        // Updated options for better look and feel with new groups
         const options = {
             nodes: {
                 shape: 'icon',
-                icon: {
-                    face: 'FontAwesome',
-                    code: '\uf126', // Default Code: Link/Chain Icon
-                    size: 30,
-                    color: '#00bcd4'
-                },
+                icon: { face: 'FontAwesome', size: 30 },
                 font: { color: '#333333', size: 12, multi: 'html' },
                 borderWidth: 2,
-                shadow: { enabled: true, color: 'rgba(0,0,0,0.1)', size: 8, x: 2, y: 2 },
+                shadow: true,
             },
             edges: {
-                arrows: { to: { enabled: true, scaleFactor: 0.5 } },
-                color: { color: '#b0bec5', highlight: '#00bcd4' },
-                font: { align: 'top', color: '#546e7a', size: 10, multi: 'html' },
+                arrows: { to: { enabled: true, scaleFactor: 0.6 } },
+                color: { color: '#64748b', highlight: '#06b6d4' },
+                font: { align: 'top', color: '#546e7a', size: 10, multi: 'html', bold: true },
                 smooth: { type: 'dynamic' }
             },
             groups: {
-                suspect: { icon: { code: '\uf007', color: '#9c27b0' } }, // User icon
-                chat: { icon: { code: '\uf086', color: '#00bcd4' } }, // Comments icon
-                media: { icon: { code: '\uf03e', color: '#8d6e63' } }, // Image icon
-                doc: { icon: { code: '\uf15c', color: '#546e7a' } }, // File icon
-                foreign: { icon: { code: '\uf579', color: '#ef4444', size: 35 }, color: { background: '#fef2f2', border: '#ef4444' } }, // Globe icon, Red flag
-                crypto: { icon: { code: '\uf830', color: '#ef4444', size: 35 }, color: { background: '#fef2f2', border: '#ef4444' } } // Coin icon, Red flag
+                s_main: { icon: { code: '\uf007', color: '#a855f7', size: 40 }, color: { background: '#f5d0fe', border: '#a855f7' } },
+                s_co: { icon: { code: '\uf007', color: '#ef4444', size: 35 }, color: { background: '#fee2e2', border: '#ef4444' } },
+                finance: { icon: { code: '\uf155', color: '#f59e0b' } },
+                comms: { icon: { code: '\uf086', color: '#06b6d4' } },
+                device: { icon: { code: '\uf3cd', color: '#10b981' } },
+                doc: { icon: { code: '\uf15c', color: '#16a34a' } },
+                media: { icon: { code: '\uf03e', color: '#fb923c' } },
+                case: { icon: { code: '\uf19c', color: '#7e22ce', size: 35 } },
+                other: { icon: { code: '\uf0c1', color: '#64748b' } }
             },
             physics: {
                 enabled: true,
-                stabilization: { iterations: 150 }
+                stabilization: { iterations: 200 }
             },
             interaction: { hover: true, tooltipDelay: 200 }
         };
 
         // Initialize the network
         window.onload = function() {
-            new vis.Network(container, data, options);
+            // FIX: Get the DOM element reference for the graph container
+            const container = document.getElementById('evidence-graph');
+            const data = { nodes: nodes, edges: edges };
+
+            if (container) {
+                new vis.Network(container, data, options);
+            } else {
+                console.error("Error: Could not find element with ID 'evidence-graph'.");
+            }
         }
     </script>
 </body>
